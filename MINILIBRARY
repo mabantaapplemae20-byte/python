@@ -1,0 +1,39 @@
+while True:
+    print("\nMINI LIBRARY")
+    print("\n1.Add a book \n2.Display all books \n3.Remove a book \n4.Update book \n5.Exit")
+    choice =  input("enter your Choice: ")
+    
+    if choice == "1":
+        book_name = input("Enter book tittle: ")
+        with open("Library.txt", "a") as file:
+            file.write(book_name + "\n")
+    elif choice == "2":
+        with open("Library.txt", "r") as file:
+            books = file.readlines()
+            if not books:
+                print("No books in the library.")
+            else:
+                print("\nBooks in the library:")
+                for book in books:
+                    print(book.strip())
+    elif choice == "3":
+        book_name = input("Enter book tittle to remove: ")
+        with open("Library.txt", "r") as file:
+            books = file.readlines()
+        with open("Library.txt", "w") as file:
+            for book in books:
+                if book.strip() != book_name:
+                    file.write(book)
+    elif choice == "4":
+        old_book_name = input("Enter the tittle of the book to update: ")
+        new_book_name = input("Enter the new tittle: ")
+        with open("Library.txt", "r") as file:
+            books = file.readlines()
+        with open("Library.txt", "w") as file:
+            for book in books:
+                if book.strip() == old_book_name:
+                    file.write(new_book_name + "\n")
+                else:
+                    file.write(book)
+    elif choice == "5": 
+        print("Exiting the program.")
